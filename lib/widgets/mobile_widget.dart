@@ -43,7 +43,7 @@ class _MobileWidgetState extends State<MobileWidget> {
             PositionedDirectional(
               top: 45,
               start: 262,
-              width: 275,
+              width: 276,
               child: Container(
                 width: 300,
                 height: 380,
@@ -51,7 +51,7 @@ class _MobileWidgetState extends State<MobileWidget> {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: widget.project.images[mobileIndex],
-                        fit: BoxFit.cover
+                        fit: BoxFit.fill
                     )
                 ),
               ),

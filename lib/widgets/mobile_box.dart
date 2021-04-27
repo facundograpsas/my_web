@@ -37,20 +37,20 @@ class _MobileBoxState extends State<MobileBox> {
           Container(
               margin: EdgeInsets.only(top: 50),
               child: Text(
-                "Desencajados",
+                widget.project.title,
                 style:
                     GoogleFonts.metrophobic(color: Colors.white, fontSize: 40),
               )),
           Container(
               margin: EdgeInsets.only(bottom: 50),
               child: Text(
-                "Proyecto personal",
+                widget.project.description,
                 style:
                     GoogleFonts.metrophobic(color: Colors.grey, fontSize: 30),
               )),
           MobileWidget(project: widget.project),
           Text(
-            "Tecnologías usadas: Kotlin",
+            "Tecnologías usadas: ${widget.project.madeWith}",
             style: TextStyle(color: Colors.grey, fontSize: 16),
           ),
           Container(

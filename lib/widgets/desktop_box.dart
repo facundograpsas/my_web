@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_presentation/project.dart';
+import 'package:my_presentation/widgets/desktop_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class DesktopBox extends StatefulWidget {
@@ -17,25 +20,11 @@ class DesktopBox extends StatefulWidget {
 }
 
 class _DesktopBoxState extends State<DesktopBox> {
-
-  Color currentColor = Colors.blue;
-  int index = 0;
-  late AssetImage currentImage;
-
-
-  @override
-  void initState() {
-    currentImage = widget.project.images[index];
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return
       FittedBox(
       child:Container(
-      // width: 800,
-      // height: 500,
       margin: EdgeInsets.all(30),
       decoration: BoxDecoration(
           boxShadow: [
@@ -46,105 +35,87 @@ class _DesktopBoxState extends State<DesktopBox> {
                 blurRadius: 5
             )
           ],
-          // border: Border.all(color: Colors.black, width: 4),
           color: Colors.black87,
       ),
       child: Column(
-        // clipBehavior: Clip.hardEdge,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             margin: EdgeInsets.only(top:30),
-              child: Text("Desencajados",
+              child: Text(widget.project.title,
               style: GoogleFonts.metrophobic(color: Colors.white,
               fontSize: 30),)),
           Container(
             margin: EdgeInsets.only(bottom: 10),
-            child: Text("Proyecto personal",
+            child: Text(widget.project.description,
             style: GoogleFonts.metrophobic(
                 color: Colors.grey,
             fontSize: 18),)
           ),
-          FittedBox(
-            child: Container(
-                width: 800,
-                height: 500,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/escritorio.png"),
-                      // fit: BoxFit.cover
-                    )
+            DesktopWidget(project: widget.project),
+          Text(
+            "Tecnologías usadas: ${widget.project.madeWith}",
+            style: TextStyle(color: Colors.grey, fontSize: 16),
+          ),
+          Container(
+              margin: EdgeInsets.only(top: 15),
+              child: RichText(
+                text: TextSpan(
+                    style: GoogleFonts.metrophobic(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                    children: playStoreLink()
                 ),
-              child: Stack(
-                children: [
-                  PositionedDirectional(
-                    top: 10,
-                    start: 150,
-                    width: 500,
-                    child: Container(
-                      width: 300,
-                      height: 300,
-                      // color: Colors.green,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: widget.project.images[index],
-                          fit: BoxFit.cover
-                        )
-                      ),
-                    ),
-                  ),
-                  PositionedDirectional(
-                    end: 250,
-                    bottom: 130,
-                    child: Container(
-                        child: ElevatedButton(
-                          child: Icon(Icons.arrow_forward,
-                          color: Colors.black87,),
-                            onPressed: (){
-                              if(index < widget.project.images.length-1)
-                              setState(() {
-                                index++;
-                              });
-                            },
-                            style: ElevatedButton.styleFrom(
-                            primary: Colors.white60
-                          )
-                        ),
-                  )
-                  ),
-                  PositionedDirectional(
-                    end: 500,
-                    bottom: 130,
-                    child: Container(
-                      child: ElevatedButton(
-                          child: Icon(Icons.arrow_back,
-                            color: Colors.black87,),
-                          onPressed: (){
-                            if(index > 0)
-                              setState(() {
-                              index--;
-                            });
-                          },
-                          style: ElevatedButton.styleFrom(
-                              primary: Colors.white60
-                          )
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          )
+              )),
+          Container(
+              margin: EdgeInsets.only(top: 15),
+              child: RichText(
+                text: TextSpan(
+                    style: GoogleFonts.metrophobic(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                    children: githubLink()
+                ),
+              ))
         ],
       ),
     )
       );
   }
 
-  void updateColor(Color color) {
-    setState(() {
-      currentColor = color;
-    });
+  playStoreLink(){
+    List<TextSpan> link = [];
+    if(widget.project.playStore!= null){
+      link.add(TextSpan(
+          text: "Play Store: ",
+          style: TextStyle(color: Colors.white)));
+      link.add(TextSpan(
+          text:
+          widget.project.playStore,
+          style:TextStyle(color: Colors.blue),
+          recognizer: new TapGestureRecognizer()
+            ..onTap = () { launch(widget.project.playStore.toString());}
+      ));
+    }
+    return link;
+  }
+
+  githubLink(){
+    List<TextSpan> link = [];
+    if(widget.project.github!= null){
+      link.add(TextSpan(
+          text: "Github: ",
+          style: TextStyle(color: Colors.white)));
+      link.add(TextSpan(
+          text:
+          widget.project.github,
+          style:TextStyle(color: Colors.blue),
+          recognizer: new TapGestureRecognizer()
+            ..onTap = () { launch(widget.project.github.toString());}
+      ));
+    }
+    return link;
   }
 }

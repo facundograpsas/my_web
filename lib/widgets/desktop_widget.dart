@@ -16,10 +16,12 @@ class DesktopWidget extends StatefulWidget {
 class _DesktopWidgetState extends State<DesktopWidget> {
 
   late int index;
+  late AssetImage currentImage;
 
   @override
   void initState() {
     index = 0;
+    currentImage = widget.project.images[index];
     super.initState();
   }
 
@@ -49,8 +51,8 @@ class _DesktopWidgetState extends State<DesktopWidget> {
                 // color: Colors.green,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: widget.project.images[index],
-                        fit: BoxFit.cover
+                        image: currentImage,
+                        fit: BoxFit.fill
                     )
                 ),
               ),
@@ -63,10 +65,16 @@ class _DesktopWidgetState extends State<DesktopWidget> {
                       child: Icon(Icons.arrow_forward,
                         color: Colors.black87,),
                       onPressed: (){
-                        if(index < widget.project.images.length-1)
+                        setState(() {currentImage = AssetImage("assets/images/tvnoise.gif");});
+
+                        if(index < widget.project.images.length-1) index++;
+                        else index = 0;
+
+                        Future.delayed(Duration(milliseconds: 200), () {
                           setState(() {
-                            index++;
+                            currentImage = widget.project.images[index];
                           });
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.white60
@@ -82,10 +90,16 @@ class _DesktopWidgetState extends State<DesktopWidget> {
                     child: Icon(Icons.arrow_back,
                       color: Colors.black87,),
                     onPressed: (){
-                      if(index > 0)
+                      setState(() {currentImage = AssetImage("assets/images/tvnoise.gif");});
+
+                      if(index > 0) index--;
+                      else index = widget.project.images.length-1;
+
+                      Future.delayed(Duration(milliseconds: 200), () {
                         setState(() {
-                          index--;
+                          currentImage = widget.project.images[index];
                         });
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                         primary: Colors.white60

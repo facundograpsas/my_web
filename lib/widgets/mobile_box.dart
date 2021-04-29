@@ -35,22 +35,22 @@ class _MobileBoxState extends State<MobileBox> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-              margin: EdgeInsets.only(top: 50),
+              margin: EdgeInsets.only(top: 10),
               child: Text(
                 widget.project.title,
                 style:
                     GoogleFonts.metrophobic(color: Colors.white, fontSize: 40),
               )),
           Container(
-              margin: EdgeInsets.only(bottom: 50),
+              margin: EdgeInsets.only(bottom: 30),
               child: Text(
                 widget.project.description,
                 style:
-                    GoogleFonts.metrophobic(color: Colors.grey, fontSize: 30),
+                    GoogleFonts.metrophobic(color: Colors.grey, fontSize: 20),
               )),
           MobileWidget(project: widget.project),
           Text(
-            "Tecnologías usadas: ${widget.project.madeWith}",
+            "Hecho en: ${widget.project.madeWith}",
             style: TextStyle(color: Colors.grey, fontSize: 16),
           ),
           Container(

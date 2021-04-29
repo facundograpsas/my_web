@@ -54,8 +54,8 @@ class _DesktopBoxState extends State<DesktopBox> {
           ),
             DesktopWidget(project: widget.project),
           Text(
-            "Tecnologías usadas: ${widget.project.madeWith}",
-            style: TextStyle(color: Colors.grey, fontSize: 16),
+            "Hecho en: ${widget.project.madeWith}",
+            style: TextStyle(color: Colors.grey, fontSize: 14),
           ),
           Container(
               margin: EdgeInsets.only(top: 15),

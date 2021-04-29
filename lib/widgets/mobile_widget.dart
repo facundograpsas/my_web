@@ -28,29 +28,29 @@ class _MobileWidgetState extends State<MobileWidget> {
   Widget build(BuildContext context) {
     return FittedBox(
       child: Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: EdgeInsets.only(bottom: 1),
         width: 800,
-        height: 500,
+        height: 600,
         alignment: Alignment.center,
         decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/smartphone.png"),
+              image: AssetImage("assets/images/smartphone6.png"),
               // fit: BoxFit.cover
             )
         ),
         child: Stack(
           children: [
             PositionedDirectional(
-              top: 45,
-              start: 262,
-              width: 276,
+              top: 65,
+              start: 258,
+              width: 278,
               child: Container(
                 width: 300,
-                height: 380,
+                height: 455,
                 // color: Colors.green,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: widget.project.images[mobileIndex],
+                        image: currentMobileImage,
                         fit: BoxFit.fill
                     )
                 ),
@@ -64,12 +64,16 @@ class _MobileWidgetState extends State<MobileWidget> {
                       child: Icon(Icons.arrow_forward,
                         color: Colors.black87,),
                       onPressed: (){
-                        if(mobileIndex < widget.project.images.length-1)
-                          setState(() {
-                            mobileIndex++;
-                            currentMobileImage = widget.project.images[mobileIndex];
+                        setState(() {currentMobileImage = AssetImage("assets/images/tvnoise.gif");});
 
+                        if(mobileIndex < widget.project.images.length-1) mobileIndex++;
+                        else mobileIndex = 0;
+
+                        Future.delayed(Duration(milliseconds: 200), () {
+                          setState(() {
+                            currentMobileImage = widget.project.images[mobileIndex];
                           });
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                           primary: Colors.white60
@@ -85,11 +89,16 @@ class _MobileWidgetState extends State<MobileWidget> {
                     child: Icon(Icons.arrow_back,
                       color: Colors.black87,),
                     onPressed: (){
-                      if(mobileIndex > 0)
+                      setState(() {currentMobileImage = AssetImage("assets/images/tvnoise.gif");});
+
+                      if(mobileIndex > 0) mobileIndex--;
+                      else mobileIndex = widget.project.images.length-1;
+
+                      Future.delayed(Duration(milliseconds: 200), () {
                         setState(() {
-                          mobileIndex--;
                           currentMobileImage = widget.project.images[mobileIndex];
                         });
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                         primary: Colors.white60

@@ -8,10 +8,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: MyHomePage(),
-      initialRoute: "/",
-      routes: {
-        '/perro' : (context) => MyHomePage(title: "asd",)
-      },
+      // initialRoute: "/",
+      // routes: {
+      //   '/perro' : (context) => MyHomePage(title: "asd",)
+      // },
     );
   }
 }

@@ -6,11 +6,9 @@ import 'package:my_presentation/widgets/rainbow_container.dart';
 class NameCard extends StatefulWidget {
   const NameCard({
     Key? key,
-    required this.fontSize,
     required this.widthFactor,
   }) : super(key: key);
 
-  final double fontSize;
   final double widthFactor;
 
   @override
@@ -23,10 +21,10 @@ class _NameCardState extends State<NameCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-       width: 800,
       // height: 200,
+      // alignment: Alignment.center,
+    width: widget.widthFactor,
       margin: EdgeInsets.only(top: 10),
-      alignment: Alignment.center,
       decoration: BoxDecoration(
           border: Border.all(color: Colors.white60),
           color: Colors.black38.withOpacity(1.0),
@@ -43,9 +41,9 @@ class _NameCardState extends State<NameCard> {
         children: [
           Row(
             children: [
-              Expanded(child: RainbowContainer(height:2.toDouble(), filled: true,)),
+              Expanded(child: RainbowContainer(height:2.toDouble(), filled: true, key:Key("asd"),)),
               Expanded(
-                flex: 3,
+                flex: 2,
                 child: FittedBox(
                   fit: BoxFit.fitWidth,
                   child: Text('Facundo '
@@ -56,7 +54,7 @@ class _NameCardState extends State<NameCard> {
                   ),
                 ),
               ),
-              Expanded(child: RainbowContainer(height:2.toDouble(), filled: true,)),
+              Expanded(child: RainbowContainer(height:2.toDouble(), filled: true, key: Key("asd"),)),
             ],
           ),
           Text(
@@ -71,9 +69,15 @@ class _NameCardState extends State<NameCard> {
               children: [
                 HoverIconButton(
                   imageAsset: "assets/images/github.png",
+                  uri: "https://github.com/facundograpsas",
                 ),
                 HoverIconButton(
                   imageAsset: "assets/images/email_icon2.png",
+                  uri: "mailto:facundo.grapsas@gmail.com",
+                ),
+                HoverIconButton(
+                  imageAsset: "assets/images/linkedin2.png",
+                  uri: ""
                 ),
               ],
             ),

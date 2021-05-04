@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_presentation/project.dart';
 
 class MobileWidget extends StatefulWidget {
@@ -22,6 +23,14 @@ class _MobileWidgetState extends State<MobileWidget> {
     mobileIndex = 0;
     currentMobileImage = widget.project.images[mobileIndex];
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    widget.project.images.forEach((element) {
+      precacheImage(element, context);
+    });
   }
 
   @override
@@ -93,6 +102,7 @@ class _MobileWidgetState extends State<MobileWidget> {
 
                       if(mobileIndex > 0) mobileIndex--;
                       else mobileIndex = widget.project.images.length-1;
+
 
                       Future.delayed(Duration(milliseconds: 200), () {
                         setState(() {

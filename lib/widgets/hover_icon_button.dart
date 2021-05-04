@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HoverIconButton extends StatefulWidget {
   final String imageAsset;
+  final String uri;
 
 
-  HoverIconButton({required this.imageAsset});
+  HoverIconButton({required this.imageAsset, required this.uri});
 
   @override
   _HoverIconButtonState createState() => _HoverIconButtonState();
@@ -17,7 +19,9 @@ class _HoverIconButtonState extends State<HoverIconButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        launch(widget.uri);
+      },
       onHover: (isHovering) {
         if (isHovering) {
           setState(() {

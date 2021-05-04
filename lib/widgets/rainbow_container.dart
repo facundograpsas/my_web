@@ -29,7 +29,7 @@ class RainbowContainer extends StatefulWidget {
 }
 
 class _RainbowContainerState extends State<RainbowContainer>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation<Color> _colorAnim;
 
@@ -60,6 +60,7 @@ class _RainbowContainerState extends State<RainbowContainer>
     controller.forward();
   }
 
+
   @override
   Widget build(BuildContext context) {
     Color? color;
@@ -82,5 +83,11 @@ class _RainbowContainerState extends State<RainbowContainer>
           border: border,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

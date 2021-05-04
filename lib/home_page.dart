@@ -1,12 +1,15 @@
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_presentation/project.dart';
 import 'package:my_presentation/widgets/mobile_box.dart';
 import 'package:my_presentation/widgets/name_card.dart';
 import 'package:my_presentation/widgets/desktop_box.dart';
 import 'package:my_presentation/widgets/desktop_mobile_box.dart';
+
+import 'my_app.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, this.title}) : super(key: key);
@@ -17,6 +20,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -25,64 +29,72 @@ class _MyHomePageState extends State<MyHomePage> {
       isLargeScreen = true;
     else
       isLargeScreen = false;
-    return Scaffold(
-      // backgroundColor: Colors.black87,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/darkbg.jpg"),
-                    fit: BoxFit.cover)),
-            child: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: [
-                    // if (isLargeScreen)
-                    NameCard(
-                      fontSize: 50,
-                      widthFactor: 0.5,
-                    )
-                    // else
-                    //   NameCard(
-                    //     fontSize: 30,
-                    //     widthFactor: 0.8,
-                    //   ),
-                    ,
-                    Container(
-                      height: 800,
-                      width: double.infinity,
-                      child: CarouselSlider(
-                        options: CarouselOptions(
-                          // height: 800.0,
-                          // aspectRatio: 5/3,
-                          viewportFraction: 0.6,
-                        ),
-                        // items: [[Colors.red,Colors.green],2,3,4,5].map((i) {
-                        //   return Builder(
-                        //     builder: (BuildContext context) {
-                        //       return ProjectBox(project: i,);
-                        //     },
-                        //   );
-                        // }).toList(),
-                        items: projects
-                            .map((project) =>
-                                Builder(builder: (BuildContext context) {
-                                  if(project is DesktopProject) return DesktopBox(project: project);
-                                  else if(project is DesktopAndMobileProject) return DesktopAndMobileBox(project: project);
-                                  else if(project is MobileProject) return MobileBox(project: project);
-                                  else return ErrorWidget(Exception("No hay contendor para ese tipo"));
-                                }))
-                            .toList(),
-                      ),
-                    )
-                  ],
+    return MaterialApp(
+      home: Scaffold(
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/darkbg.jpg"),
+                      fit: BoxFit.cover)),
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: [
+                      if (isLargeScreen)
+                        createNameCard(width: 800)
+                      else
+                        createNameCard(width: 350),
+                      if (isLargeScreen)
+                        createCarousel(height: 780, viewportFraction: 0.6)
+                      else
+                        createCarousel(height: 500, viewportFraction: 1.toDouble())
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget createNameCard({required double width}) {
+    print("adaaa");
+    return NameCard(
+      widthFactor: width,
+    );
+  }
+
+  Widget createCarousel({required double height, required viewportFraction}) {
+    return Container(
+      margin: EdgeInsets.only(top: 100),
+      height: height,
+      width: double.infinity,
+      child: CarouselSlider(
+        options: CarouselOptions(
+          aspectRatio: 1 / 1,
+          viewportFraction: viewportFraction,
+        ),
+        items: projects
+            .map((project) => Builder(builder: (BuildContext context) {
+              print("HOLAA");
+                  if (project is DesktopProject)
+                    return DesktopBox(project: project);
+                  else if (project is DesktopAndMobileProject)
+                    return DesktopAndMobileBox(project: project);
+                  else if (project is MobileProject)
+                    return MobileBox(project: project);
+                  else if(Random().nextInt(2) == 1)
+                    return MyApp();
+                  else return Text("asd");
+                    // return ErrorWidget(
+                    //     Exception("No hay contendor para ese tipo"));
+                }))
+            .toList(),
       ),
     );
   }

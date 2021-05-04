@@ -1,9 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_presentation/project.dart';
 import 'package:my_presentation/widgets/desktop_widget.dart';
 import 'package:my_presentation/widgets/mobile_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class DesktopAndMobileBox extends StatefulWidget {
@@ -25,7 +27,7 @@ class _DesktopAndMobileBoxState extends State<DesktopAndMobileBox> {
     return
       FittedBox(
       child:Container(
-      height: 850,
+      height: 950,
       margin: EdgeInsets.all(30),
       decoration: BoxDecoration(
           boxShadow: [
@@ -58,9 +60,70 @@ class _DesktopAndMobileBoxState extends State<DesktopAndMobileBox> {
               MobileWidget(project: widget.project.mobileProject),
             ],
           ),
+          Text(
+            "Hecho en: ${widget.project.desktopProject.madeWith}",
+            style: TextStyle(color: Colors.grey, fontSize: 20),
+          ),
+          Container(
+              margin: EdgeInsets.only(top: 15),
+              child: RichText(
+                text: TextSpan(
+                    style: GoogleFonts.metrophobic(
+                        color: Colors.grey,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    children: playStoreLink()
+                ),
+              )),
+          Container(
+              margin: EdgeInsets.only(top: 15),
+              child: RichText(
+                text: TextSpan(
+                    style: GoogleFonts.metrophobic(
+                        color: Colors.grey,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                    children: githubLink()
+                ),
+              ))
         ],
       ),
     )
       );
   }
+
+  playStoreLink(){
+    List<TextSpan> link = [];
+    if(widget.project.desktopProject.playStore!= null){
+      link.add(TextSpan(
+          text: "Play Store: ",
+          style: TextStyle(color: Colors.white)));
+      link.add(TextSpan(
+          text:
+          widget.project.desktopProject.playStore,
+          style:TextStyle(color: Colors.blue),
+          recognizer: new TapGestureRecognizer()
+            ..onTap = () { launch(widget.project.desktopProject.playStore.toString());}
+      ));
+    }
+    return link;
+  }
+
+  githubLink(){
+    List<TextSpan> link = [];
+    if(widget.project.desktopProject.github!= null){
+      link.add(TextSpan(
+          text: "Github: ",
+          style: TextStyle(color: Colors.white)));
+      link.add(TextSpan(
+          text:
+          widget.project.desktopProject.github,
+          style:TextStyle(color: Colors.blue),
+          recognizer: new TapGestureRecognizer()
+            ..onTap = () { launch(widget.project.desktopProject.github.toString());}
+      ));
+    }
+    return link;
+  }
+
 }

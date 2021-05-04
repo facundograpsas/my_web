@@ -96,7 +96,7 @@ class _DesktopAndMobileBoxState extends State<DesktopAndMobileBox> {
     List<TextSpan> link = [];
     if(widget.project.desktopProject.playStore!= null){
       link.add(TextSpan(
-          text: "Play Store: ",
+          text: widget.project.desktopProject.linkTitle,
           style: TextStyle(color: Colors.white)));
       link.add(TextSpan(
           text:

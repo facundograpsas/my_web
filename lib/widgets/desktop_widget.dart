@@ -6,8 +6,9 @@ class DesktopWidget extends StatefulWidget {
 
 
   final DesktopProject project;
+  Widget? app;
 
-  DesktopWidget({required this.project});
+  DesktopWidget({required this.project, this.app});
 
   @override
   _DesktopWidgetState createState() => _DesktopWidgetState();
@@ -35,12 +36,13 @@ class _DesktopWidgetState extends State<DesktopWidget> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/escritorio.png"),
+              image: AssetImage("assets/images/desktop.png"),
               // fit: BoxFit.cover
             )
         ),
         child: Stack(
           children: [
+            if(widget.app==null)
             PositionedDirectional(
               top: 10,
               start: 150,
@@ -56,7 +58,18 @@ class _DesktopWidgetState extends State<DesktopWidget> {
                     )
                 ),
               ),
-            ),
+            )
+            else
+              PositionedDirectional(
+                top: 10,
+                start: 150,
+                width: 500,
+                child: Container(
+                  width: 300,
+                  height: 300,
+                  child: widget.app,
+                ),
+              ),
             PositionedDirectional(
                 end: 250,
                 bottom: 130,

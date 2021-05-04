@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +6,6 @@ import 'package:my_presentation/widgets/mobile_box.dart';
 import 'package:my_presentation/widgets/name_card.dart';
 import 'package:my_presentation/widgets/desktop_box.dart';
 import 'package:my_presentation/widgets/desktop_mobile_box.dart';
-
-import 'my_app.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, this.title}) : super(key: key);
@@ -46,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (isLargeScreen)
                         createNameCard(width: 800)
                       else
-                        createNameCard(width: 350),
+                        createNameCard(width: 370),
                       if (isLargeScreen)
                         createCarousel(height: 780, viewportFraction: 0.6)
                       else
@@ -63,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget createNameCard({required double width}) {
-    print("adaaa");
     return NameCard(
       widthFactor: width,
     );
@@ -71,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget createCarousel({required double height, required viewportFraction}) {
     return Container(
-      margin: EdgeInsets.only(top: 100),
+      margin: EdgeInsets.only(top: 10),
       height: height,
       width: double.infinity,
       child: CarouselSlider(
@@ -81,18 +76,16 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         items: projects
             .map((project) => Builder(builder: (BuildContext context) {
-              print("HOLAA");
                   if (project is DesktopProject)
                     return DesktopBox(project: project);
                   else if (project is DesktopAndMobileProject)
                     return DesktopAndMobileBox(project: project);
                   else if (project is MobileProject)
                     return MobileBox(project: project);
-                  else if(Random().nextInt(2) == 1)
-                    return MyApp();
-                  else return Text("asd");
-                    // return ErrorWidget(
-                    //     Exception("No hay contendor para ese tipo"));
+                  else
+                    return ErrorWidget(
+                      Exception("Error")
+                    );
                 }))
             .toList(),
       ),

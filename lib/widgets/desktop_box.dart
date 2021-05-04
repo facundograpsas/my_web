@@ -9,9 +9,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class DesktopBox extends StatefulWidget {
   final DesktopProject project;
+  Widget? app;
 
   DesktopBox({required this.project,
-    Key? key,
+    Key? key, this.app
   }) : super(key: key);
 
 
@@ -52,7 +53,7 @@ class _DesktopBoxState extends State<DesktopBox> {
                 color: Colors.grey,
             fontSize: 18),)
           ),
-            DesktopWidget(project: widget.project),
+            DesktopWidget(project: widget.project, app: widget.project.widget,),
           Text(
             "Hecho en: ${widget.project.madeWith}",
             style: TextStyle(color: Colors.grey, fontSize: 14),

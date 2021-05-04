@@ -43,7 +43,7 @@ class _MobileWidgetState extends State<MobileWidget> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/smartphone6.png"),
+              image: AssetImage("assets/images/smartphone.png"),
               // fit: BoxFit.cover
             )
         ),

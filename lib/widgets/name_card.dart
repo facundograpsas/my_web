@@ -72,11 +72,11 @@ class _NameCardState extends State<NameCard> {
                   uri: "https://github.com/facundograpsas",
                 ),
                 HoverIconButton(
-                  imageAsset: "assets/images/email_icon2.png",
+                  imageAsset: "assets/images/email.png",
                   uri: "mailto:facundo.grapsas@gmail.com",
                 ),
                 HoverIconButton(
-                  imageAsset: "assets/images/linkedin2.png",
+                  imageAsset: "assets/images/linkedin.png",
                   uri: ""
                 ),
               ],

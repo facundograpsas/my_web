@@ -67,8 +67,8 @@ var projects = [
 
 
 
-  DesktopProject("Esta página", "Proyecto personal", "Dart (Flutter)", null, null, null,
-      [AssetImage("assets/images/projects/wagashi1.png")], MyApp()),
+  // DesktopProject("Esta página", "Proyecto personal", "Dart (Flutter)", null, null, null,
+  //     [AssetImage("assets/images/projects/wagashi1.png")], MyApp()),
 
 
   MobileProject("Groupiss","Proyecto personal", "Kotlin", null , "https://github.com/facundograpsas/Groupiss",

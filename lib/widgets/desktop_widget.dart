@@ -6,9 +6,8 @@ class DesktopWidget extends StatefulWidget {
 
 
   final DesktopProject project;
-  Widget? app;
 
-  DesktopWidget({required this.project, this.app});
+  DesktopWidget({required this.project});
 
   @override
   _DesktopWidgetState createState() => _DesktopWidgetState();
@@ -24,6 +23,14 @@ class _DesktopWidgetState extends State<DesktopWidget> {
     index = 0;
     currentImage = widget.project.images[index];
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    widget.project.images.forEach((element) {
+      precacheImage(element, context);
+    });
   }
 
 
@@ -42,7 +49,6 @@ class _DesktopWidgetState extends State<DesktopWidget> {
         ),
         child: Stack(
           children: [
-            if(widget.app==null)
             PositionedDirectional(
               top: 10,
               start: 150,
@@ -58,18 +64,7 @@ class _DesktopWidgetState extends State<DesktopWidget> {
                     )
                 ),
               ),
-            )
-            else
-              PositionedDirectional(
-                top: 10,
-                start: 150,
-                width: 500,
-                child: Container(
-                  width: 300,
-                  height: 300,
-                  child: widget.app,
-                ),
-              ),
+            ),
             PositionedDirectional(
                 end: 250,
                 bottom: 130,

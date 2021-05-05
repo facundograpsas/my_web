@@ -42,7 +42,7 @@ class DesktopAndMobileProject{
 
 var projects = [
 
-  DesktopProject("Wagashi Manager", "Freelance", "HTML5, CSS3, NodeJS, Postgres", null, null, null,
+  DesktopProject("Wagashi Manager", "Trabajo Freelance", "HTML5, CSS3, NodeJS, Postgres", null, null, null,
       [AssetImage("assets/images/projects/wagashi1.png"),
         AssetImage("assets/images/projects/wagashi2.png"),
         AssetImage("assets/images/projects/wagashi3.png"),

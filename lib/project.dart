@@ -65,12 +65,6 @@ var projects = [
         AssetImage("assets/images/projects/memeversoGif3.gif")]),
 
 
-  MobileProject("pepeito","Proyecto personal", "Kotlin", "https://play.google.com/store/apps/details?id=com.app.android.memeverso" , null,
-      [AssetImage("assets/images/projects/memeversoGif1.gif"),
-        AssetImage("assets/images/projects/memeversoGif2.gif"),
-        AssetImage("assets/images/projects/memeversoGif3.gif")]),
-
-
   DesktopProject("Esta página", "Proyecto personal", "Dart (Flutter)", null, null, null,
       [AssetImage("assets/images/projects/wagashi1.png")], MyApp()),
 

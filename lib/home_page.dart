@@ -19,14 +19,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("BUILD");
     var screenWidth = MediaQuery.of(context).size.width;
     bool isLargeScreen;
     if (screenWidth > 1000)
       isLargeScreen = true;
     else
       isLargeScreen = false;
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: Stack(
           fit: StackFit.expand,
           children: [
@@ -54,7 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      ),
     );
   }
 
@@ -76,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         items: projects
             .map((project) => Builder(builder: (BuildContext context) {
+              print("inside carousel builder");
                   if (project is DesktopProject)
                     return DesktopBox(project: project);
                   else if (project is DesktopAndMobileProject)

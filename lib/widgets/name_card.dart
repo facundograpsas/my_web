@@ -77,7 +77,7 @@ class _NameCardState extends State<NameCard> {
                 ),
                 HoverIconButton(
                   imageAsset: "assets/images/linkedin.png",
-                  uri: ""
+                  uri: "https://www.linkedin.com/in/facundo-grapsas-7a4936187/"
                 ),
               ],
             ),

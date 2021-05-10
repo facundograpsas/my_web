@@ -18,10 +18,9 @@ class DesktopProject extends Project{
   final String madeWith;
   final String? playStore;
   final String? github;
-  Widget? widget;
-
   final List<AssetImage> images;
-  DesktopProject(this.title, this.description, this.madeWith, this.linkTitle, this.playStore, this.github, this.images, this.widget) : super(title: title, description:description);
+  Widget? app;
+  DesktopProject(this.title, this.description, this.madeWith, this.linkTitle, this.playStore, this.github, this.images, this.app) : super(title: title, description:description);
 }
 
 class MobileProject extends Project{
@@ -42,13 +41,13 @@ class DesktopAndMobileProject{
 
 var projects = [
 
-  DesktopProject("Wagashi Manager", "Trabajo Freelance", "HTML5, CSS3, NodeJS, Postgres", null, null, null,
+  DesktopProject("Wagashi Manager", "Trabajo Freelance", "HTML5, CSS3, NodeJS, Postgres", null, null,
+      null,
       [AssetImage("assets/images/projects/wagashi1.png"),
         AssetImage("assets/images/projects/wagashi2.png"),
         AssetImage("assets/images/projects/wagashi3.png"),
         AssetImage("assets/images/projects/wagashi4.png")
       ], null),
-
 
   MobileProject("Encontra la palabra!","Proyecto personal", "Kotlin", "https://play.google.com/store/apps/details?id=com.games.android.anagrams" , null,
       [AssetImage("assets/images/projects/ELPIGIF1.gif"),AssetImage("assets/images/projects/ELPIGIF2.gif")]),
@@ -66,9 +65,14 @@ var projects = [
         AssetImage("assets/images/projects/memeversoGif3.gif")]),
 
 
+  MobileProject("pepeito","Proyecto personal", "Kotlin", "https://play.google.com/store/apps/details?id=com.app.android.memeverso" , null,
+      [AssetImage("assets/images/projects/memeversoGif1.gif"),
+        AssetImage("assets/images/projects/memeversoGif2.gif"),
+        AssetImage("assets/images/projects/memeversoGif3.gif")]),
 
-  // DesktopProject("Esta página", "Proyecto personal", "Dart (Flutter)", null, null, null,
-  //     [AssetImage("assets/images/projects/wagashi1.png")], MyApp()),
+
+  DesktopProject("Esta página", "Proyecto personal", "Dart (Flutter)", null, null, null,
+      [AssetImage("assets/images/projects/wagashi1.png")], MyApp()),
 
 
   MobileProject("Groupiss","Proyecto personal", "Kotlin", null , "https://github.com/facundograpsas/Groupiss",
